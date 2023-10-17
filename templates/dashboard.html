@@ -1,0 +1,29 @@
+{% extends 'layout.html' %}
+{% block title %}<title>Dashboard - APP Flask Report</title>{% endblock %}
+{% block styles %}<link rel="stylesheet" href="../static/dashboard.css">{% endblock %}
+
+
+{% block content %}
+
+<h2>Dashboard</h2>
+
+{% if user %}
+    <p>Nombre de Usuario: {{ user.nombre_usuario }}</p>
+    <p>ID de Usuario: {{ user.id_user }}</p>
+    <p>Fecha de Ingreso: {{ user.fecha_ingreso }}</p>
+    <p>Estado de Empleado: {{ user.estado_empleado }}</p>
+    <p>Área Funcional: {{ user.area_funcional }}</p>
+    <p>Tipo de Rango de Usuario: {{ user_type.type }}</p>
+    <p>Valor de id_cargo: {{ user.id_cargo }}</p>
+{% else %}
+    <p>No se encontraron datos del usuario.</p>
+{% endif %}
+
+<div class="container">
+    <!-- <iframe title="Report Section" width="1024" height="804" src="https://app.powerbi.com/view?r=eyJrIjoiMjA2MzNiYTctMmY0Mi00YmRhLTljYzktNmQ1ZWMwYTczNmE1IiwidCI6IjE2NDI3ZmRlLWVmYTctNGY3YS05OWRjLTUxZDY1ZmI2NDBmMiIsImMiOjF9" frameborder="0" allowFullScreen="true"></iframe> -->
+    <iframe title="deals" width="1140" height="541.25" src="https://app.powerbi.com/reportEmbed?reportId=49af7002-48a6-435c-84c3-50fad788cd48&autoAuth=true&filter=ID_user/id_user eq {{ user.id_cargo }}" frameborder="0" allowFullScreen="true"></iframe>
+</div>
+
+<!-- Agrega aquí el resto de contenido del dashboard -->
+
+{% endblock %}
