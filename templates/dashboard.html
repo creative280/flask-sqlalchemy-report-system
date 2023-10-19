@@ -1,29 +1,71 @@
 {% extends 'layout.html' %}
 {% block title %}<title>Dashboard - APP Flask Report</title>{% endblock %}
-{% block styles %}<link rel="stylesheet" href="../static/dashboard.css">{% endblock %}
+{% block styles %}<link rel="stylesheet" href="../static/css/dashboard.css">{% endblock %}
 
 
 {% block content %}
 
-<h2>Dashboard</h2>
+<!-- <div class="container-fluid">
+    <div class="row justify-content-center align-content-center">
+        <div class="col-8 barra">
+            <h4 class="text-light"></h4>
+        </div>
+        <div class="col-4 text-right barra">
+            <ul class="navbar-nav mr-auto">
+                <li>
+                    <a href="#" class="px-3 text-light perfil dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-user-circle user"></i></a>
 
-{% if user %}
-    <p>Nombre de Usuario: {{ user.nombre_usuario }}</p>
-    <p>ID de Usuario: {{ user.id_user }}</p>
-    <p>Fecha de Ingreso: {{ user.fecha_ingreso }}</p>
-    <p>Estado de Empleado: {{ user.estado_empleado }}</p>
-    <p>Área Funcional: {{ user.area_funcional }}</p>
-    <p>Tipo de Rango de Usuario: {{ user_type.type }}</p>
-    <p>Valor de id_cargo: {{ user.id_cargo }}</p>
-{% else %}
-    <p>No se encontraron datos del usuario.</p>
-{% endif %}
+                    <div class="dropdown-menu" aria-labelledby="navbar-dropdown">
+                        <a class="dropdown-item menuperfil cerrar" href="#"><i class="fas fa-sign-out-alt m-1"></i>Salir
+                        </a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div> -->
 
-<div class="container">
-    <!-- <iframe title="Report Section" width="1024" height="804" src="https://app.powerbi.com/view?r=eyJrIjoiMjA2MzNiYTctMmY0Mi00YmRhLTljYzktNmQ1ZWMwYTczNmE1IiwidCI6IjE2NDI3ZmRlLWVmYTctNGY3YS05OWRjLTUxZDY1ZmI2NDBmMiIsImMiOjF9" frameborder="0" allowFullScreen="true"></iframe> -->
-    <iframe title="deals" width="1140" height="541.25" src="https://app.powerbi.com/reportEmbed?reportId=49af7002-48a6-435c-84c3-50fad788cd48&autoAuth=true&filter=ID_user/id_user eq {{ user.id_cargo }}" frameborder="0" allowFullScreen="true"></iframe>
+<div class="container-fluid">
+    <div class="row">
+        <div class="barra-lateral col-12 col-sm-auto">
+            <nav class="menu d-flex d-sm-block justify-content-center flex-wrap">
+                <a href="#"><i class="fas fa-home"></i><span>Inicio</span></a>
+                <a href="#"><i class="fas fa-home"></i><span>Inicio</span></a>
+                <a href="#"><i class="fas fa-home"></i><span>Inicio</span></a>
+                <a href="/logout"><i class="fa fa-sign-out"></i><span>Log Out</span></a>
+            </nav>
+        </div>
+        <main class="main col">
+            <div class="row ">
+                <div class="columna col-lg-6">
+                    <div class="card" style="width: 50rem;">
+                        <ul class="list-group list-group-flush">
+                        {% if user %}
+                          <li class="list-group-item">Nombre de Usuario: {{ user.nombre_usuario }}</li>
+                          <li class="list-group-item">ID de Usuario: {{ user.id_user }}</li>
+                          <li class="list-group-item">Fecha de Ingreso: {{ user.fecha_ingreso }}</li>
+                          <li class="list-group-item">Estado de Empleado: {{ user.estado_empleado }}</li>
+                          <li class="list-group-item">Área Funcional: {{ user.area_funcional }}</li>
+                          <li class="list-group-item">Tipo de Rango de Usuario: {{ user_type.type }}</li>
+                          <li class="list-group-item">Valor de id_cargo: {{ user.id_cargo }}</li>
+                        {% else %}
+                          <p>No se encontraron datos del usuario.</p>
+                        {% endif %}
+                        </ul>
+                    </div>
+                        
+                        <br>
+                    <iframe title="deals" width="1140" height="541.25" src="https://app.powerbi.com/reportEmbed?reportId=49af7002-48a6-435c-84c3-50fad788cd48&autoAuth=true&filter=ID_user/id_user eq {{ user.id_cargo }}" frameborder="0" allowFullScreen="true"></iframe>
+                </div>
+
+            </div>
+
+        </main>
+    </div>
 </div>
 
-<!-- Agrega aquí el resto de contenido del dashboard -->
+
+
+
 
 {% endblock %}

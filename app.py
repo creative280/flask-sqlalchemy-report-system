@@ -12,9 +12,6 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root@localhost/flask-reports'
 db = SQLAlchemy(app)
 
 
-
-
-
 # ---------------- MODELO DB APP
 class UserType(db.Model):
     __tablename__ = 'user_type'
@@ -75,7 +72,7 @@ class Deal(db.Model):
 # ---------------- RUTAS APP
 @app.route('/')
 def index():
-    return render_template("index.html")
+    return render_template("login.html")
 
 @app.route('/register', methods=['GET', 'POST'])
 def register():
@@ -195,6 +192,14 @@ def sells(id_user):
 
     # Si el usuario no ha iniciado sesión o el `id_user` en la URL no coincide con el usuario autenticado, puedes devolver un error o redirigir a una página de inicio de sesión, según tus necesidades.
     return jsonify({'error': 'Acceso no autorizado'}), 401
+
+@app.route('/logout')
+def logout():
+    # Elimina la información de sesión
+    session.pop('user_id', None)  # Elimina la clave 'user_id' de la sesión
+
+    # Redirige al usuario a la página de inicio de sesión (o a otra página)
+    return redirect(url_for('login'))
 
 
 if __name__ == "__main__":
